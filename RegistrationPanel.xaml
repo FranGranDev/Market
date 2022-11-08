@@ -1,4 +1,4 @@
-﻿<Window x:Class="Market.UserPanel"
+﻿<Window x:Class="Market.RegistrationPanel"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,12 +13,13 @@
                 <DropShadowEffect BlurRadius="10" ShadowDepth="0"/>
             </Border.Effect>
             <StackPanel>
-                <TextBlock Text="Log In" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,0,20"/>
+                <TextBlock Text="Registration" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,0,20"/>
 
                 <TextBox x:Name="login" materialDesign:HintAssist.Hint="Enter login" FontSize="20" Margin="50,0,50,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Background="White" GotFocus="Login_GotFocus" LostFocus="Login_LostFocus"/>
                 <PasswordBox x:Name="password" materialDesign:HintAssist.Hint="Enter password" FontSize="20" Margin="50,0,50,0" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" GotFocus="Password_GotFocus" LostFocus="Password_LostFocus"/>
+                <PasswordBox x:Name="confirm" materialDesign:HintAssist.Hint="Confirm password" FontSize="20" Margin="50,0,50,0" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" GotFocus="Confirm_GotFocus" LostFocus="Confirm_LostFocus"/>
                 <StackPanel>
-                    <Button HorizontalAlignment="Stretch" Content="Log in" Margin="50, 20, 50, 0" Click="Button_Login_Click"/>
+                    <Button HorizontalAlignment="Stretch" Content="Registrate me" Margin="50, 20, 50, 0" Click="Button_Registration_Click"/>
                     <Button HorizontalAlignment="Stretch" Content="Back" Margin="50, 20, 50, 0" Style="{DynamicResource MaterialDesignFlatButton}" Click="Button_Back_Click"/>
                 </StackPanel>
 
