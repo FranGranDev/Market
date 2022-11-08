@@ -1,28 +1,34 @@
 ﻿using System.Windows;
 using System.ComponentModel;
-using Market.Models;
+using Market.Users;
 using System;
+
 
 namespace Market
 {
     public partial class MainWindow : Window
     {
-        private BindingList<ToDoModel> todoData;
-
         public MainWindow()
         {
-
+            userManager = new UsersManager();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            todoData = new BindingList<ToDoModel>()
-            {
-                new ToDoModel(){Text = "aboba"},
-                new ToDoModel(){Text = "stas"},
-            };
+        private UsersManager userManager;
 
-            base_grid.ItemsSource = todoData;
+        private void Button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+        private void Button_Login_Click(object sender, RoutedEventArgs e)
+        {
+            Hide();
+
+            UserPanel panel = new UserPanel(() => Show());
+            panel.Show();
+        }
+        private void Button_Registration_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -5,14 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Market"
         mc:Ignorable="d"
-        Title="Market Admin Panel" Height="450" Width="800" Loaded="Window_Loaded">
-    <Grid>
-        <DataGrid Name="base_grid" FontSize="18" FontWeight="Bold" Margin="5" AutoGenerateColumns= "False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path = CreationTime}" IsReadOnly="False" Header="CreationDate" Width="180"/>
-                <DataGridCheckBoxColumn Binding="{Binding Path = IsDone}" IsReadOnly="False" Header="Done" Width="80"/>
-                <DataGridTextColumn Binding="{Binding Path = Text}" IsReadOnly="True" Header="Todo" Width= "*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Start Panel" Height="600" Width="1000">
+    <Grid Background="#ffdadada">
+        <Border MinWidth="400" MaxWidth="400" Margin="25" Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <TextBlock Text="Market Panel" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,0,20"/>
+                <StackPanel>
+                    <Button HorizontalAlignment="Stretch" Content="Log in" Margin="50, 20, 50, 0" Click= "Button_Login_Click"/>
+                    <Button HorizontalAlignment="Stretch" Content="Registration" Margin="50, 30, 50, 0" Click="Button_Registration_Click"/>
+                    <Button HorizontalAlignment="Stretch" Content="Exit" Margin="50, 50, 50, 0" Style="{DynamicResource MaterialDesignFlatButton}" Click="Button_Exit_Click"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Market.Users
 {
-    class UsersManager
+    public class UsersManager
     {
         public UsersManager()
         {
@@ -14,7 +14,10 @@ namespace Market.Users
             {
                 new User("admin", "admin")
             };
+
+            Active = this;
         }
+        public static UsersManager Active { get; private set; }
 
         private List<User> users;
 

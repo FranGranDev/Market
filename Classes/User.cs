@@ -3,7 +3,7 @@
 
 namespace Market.Users
 {
-    class User
+    public class User
     {
         public User(string login, string password)
         {
