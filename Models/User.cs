@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace Market.Users
+﻿namespace Market.Models
 {
     public class User
     {

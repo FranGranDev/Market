@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using Market.Users;
 
 
-namespace Market.Classes
+namespace Market.Models
 {
     class AppManager
     {

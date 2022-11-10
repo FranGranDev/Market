@@ -1,14 +1,16 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Media;
-using Market.Classes;
-using Market.Users;
+using Market.Models; 
 
-namespace Market
+
+namespace Market.View
 {
-
-    public partial class RegistrationPanel : Window
+    public partial class UserPanel : Window
     {
-        public RegistrationPanel()
+
+
+        public UserPanel()
         {
             InitializeComponent();
         }
@@ -16,24 +18,22 @@ namespace Market
 
         private bool loginError = true;
         private bool passwordError = true;
-        private bool confirmError = true;
-
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)
         {
             AppManager.Main.GoPrev();
         }
-        private void Button_Registration_Click(object sender, RoutedEventArgs e)
+        private void Button_Login_Click(object sender, RoutedEventArgs e)
         {
             string loginText = login.Text.Trim();
             string passwordText = password.Password.Trim();
 
-            if (!passwordError && !loginError && !confirmError)
+            if(!passwordError && !loginError)
             {
-                AppManager.Main.UserManager.RegistrateNew(loginText, passwordText,
+                AppManager.Main.UserManager.LogIn(loginText, passwordText,
                     (x) =>
                     {
-                        MessageBox.Show($"User {x.Login} registrated");
+                        MessageBox.Show($"User {x.Login} sing in");
                     },
                     (x) =>
                     {
@@ -100,37 +100,6 @@ namespace Market
             }
 
             passwordError = false;
-        }
-
-        private void Confirm_GotFocus(object sender, RoutedEventArgs e)
-        {
-            confirm.Background = Brushes.Transparent;
-            confirm.ToolTip = null;
-        }
-        private void Confirm_LostFocus(object sender, RoutedEventArgs e)
-        {
-            confirmError = true;
-
-            if (loginError)
-                return;
-            if (passwordError)
-            {
-                confirm.ToolTip = $"Enter password first";
-                confirm.Background = Brushes.LightCoral;
-                return;
-            }
-
-            string confirmText = confirm.Password.Trim();
-            string passwordText = password.Password.Trim();
-
-            if (confirmText != passwordText)
-            {
-                confirm.ToolTip = $"Not equal";
-                confirm.Background = Brushes.LightCoral;
-                return;
-            }
-
-            confirmError = false;
         }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using System.Windows;
 using System.ComponentModel;
-using Market.Users;
-using Market.Classes;
+using Market.Models;
 using System;
 
 
-namespace Market
+namespace Market.View
 {
     public partial class MainWindow : Window
     {

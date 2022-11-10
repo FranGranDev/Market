@@ -59,36 +59,36 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="View\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\AppManager.cs" />
-    <Compile Include="Classes\User.cs" />
-    <Compile Include="RegistrationPanel.xaml.cs">
+    <Compile Include="Models\AppManager.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="View\RegistrationPanel.xaml.cs">
       <DependentUpon>RegistrationPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserPanel.xaml.cs">
+    <Compile Include="View\UserPanel.xaml.cs">
       <DependentUpon>UserPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\UsersManager.cs" />
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Models\UsersManager.cs" />
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
+    <Compile Include="View\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="RegistrationPanel.xaml">
+    <Page Include="View\RegistrationPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserPanel.xaml">
+    <Page Include="View\UserPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
