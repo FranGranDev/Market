@@ -1,4 +1,5 @@
 ﻿using Market.Models.Users;
+using Market.Models.Data;
 using Market.Stores;
 using Market.View;
 using Market.Services;
@@ -13,10 +14,12 @@ namespace Market
     {
         private readonly UsersManager usersManager;
         private readonly NavigationStore navigationStore;
+        private readonly IDataBase dataBase;
 
         public App()
         {
-            usersManager = new UsersManager();
+            dataBase = new DataBase();
+            usersManager = new UsersManager(dataBase);
             navigationStore = new NavigationStore();
         }
 

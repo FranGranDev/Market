@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Market.Models.Exceptions;
+using Market.Models.Data;
 
 
 namespace Market.Models.Users
@@ -13,30 +14,28 @@ namespace Market.Models.Users
         public const int MIN_PASSWORD_LENGHT = 4;
         public const int MAX_PASSWORD_LENGHT = 16;
 
-
-        public UsersManager()
+        public UsersManager(IDataBase dataBase)
         {
-            users = new List<User>()
-            {
-                new User("admin", "admin")
-            };
+            this.dataBase = dataBase;
         }
 
 
-        private List<User> users;
+        private IDataBase dataBase;
 
-        public List<User> Users => users;
+
+        public List<User> Users
+        {
+            get => dataBase.GetAllUsers();
+        }
         public User Currant { get; private set; }
 
         #region User
 
         public void RegistrateNew(string login, string password)
         {
-            List<User> finded = users.FindAll(x => x.Login == login);
-            if (finded.Count == 0)
+            if (!dataBase.Exists(login))
             {
-                User user = new User(login, password);
-                users.Add(user);
+                dataBase.AddNewUser(login, password);
                 return;
             }
             else
@@ -46,13 +45,12 @@ namespace Market.Models.Users
         }
         public void LogIn(string login, string password)
         {
-            List<User> finded = users.FindAll(x => x.Login == login);
-            if(finded.Count == 0)
+            if (!dataBase.Exists(login))
             {
                 throw new NoUserFindedException(login);
             }
-            User user = finded[0];
-            if(!user.ComparePassword(password))
+            User user = dataBase.GetUser(login, password);
+            if (!user.ComparePassword(password))
             {
                 throw new InvalidLoginOrPasswordException(login);
             }

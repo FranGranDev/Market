@@ -28,9 +28,9 @@ namespace Market.Commands
             {
                 usersManager.RegistrateNew(registrationViewModel.Login, registrationViewModel.Password);
             }
-            catch (NoUserFindedException)
+            catch (UserAlreadyExistsException)
             {
-                MessageBox.Show("User not founded", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("User already exists", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (InvalidLoginOrPasswordException)
             {
