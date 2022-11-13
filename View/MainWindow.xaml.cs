@@ -10,21 +10,8 @@ namespace Market.View
     {
         public MainWindow()
         {
-            new AppManager(this);
+            InitializeComponent();
         }
 
-
-        private void Button_Exit_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-        private void Button_Login_Click(object sender, RoutedEventArgs e)
-        {
-            AppManager.Main.GoWindow(new UserPanel());
-        }
-        private void Button_Registration_Click(object sender, RoutedEventArgs e)
-        {
-            AppManager.Main.GoWindow(new RegistrationPanel());
-        }
     }
 }

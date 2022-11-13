@@ -3,24 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Market.View"
+        xmlns:local="clr-namespace:Market.View" xmlns:components="clr-namespace:Market.Components"
+        xmlns:vms ="clr-namespace:Market.ViewModels"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Start Panel" Height="600" Width="1000">
-    <Grid Background="#ffdadada">
-        <Border MinWidth="400" MaxWidth="400" Margin="25" Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="20">
-            <Border.Effect>
-                <DropShadowEffect BlurRadius="10" ShadowDepth="0"/>
-            </Border.Effect>
-            <StackPanel>
-                <TextBlock Text="Market Panel" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,0,20"/>
-                <StackPanel>
-                    <Button HorizontalAlignment="Stretch" Content="Log in" Margin="50, 20, 50, 0" Click= "Button_Login_Click"/>
-                    <Button HorizontalAlignment="Stretch" Content="Registration" Margin="50, 30, 50, 0" Click="Button_Registration_Click"/>
-                    <Button HorizontalAlignment="Stretch" Content="Exit" Margin="50, 50, 50, 0" Style="{DynamicResource MaterialDesignFlatButton}" Click="Button_Exit_Click"/>
-                </StackPanel>
+    <Grid>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vms:StartViewModel}">
+                <local:StartView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:LoginViewModel}">
+                <local:LogInView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:RegistrationViewModel}">
+                <local:RegistrationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:UserListViewModel}">
+                <local:UserListView/>
+            </DataTemplate>
+        </Grid.Resources>
 
-            </StackPanel>
-        </Border>
+        <ContentControl Content="{Binding CurrantViewModel}"/>
     </Grid>
 </Window>
