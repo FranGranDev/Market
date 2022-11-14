@@ -16,7 +16,7 @@ namespace Market.Models.Data
 
         public DataBase()
         {
-            sqlConnection = new MySqlConnection("server=localhost;port=3306;username=root;password=qwerty123;database=Market");
+            sqlConnection = new MySqlConnection("server=localhost;port=3306;username=root;password=Lolipup228;database=Market");
 
             OpenConnection();
         }
@@ -73,6 +73,8 @@ namespace Market.Models.Data
             }
             reader.Close();
 
+         
+
             return users.Count > 0 ? users[0] : null;
         }
         public List<User> GetAllUsers()
@@ -108,6 +110,13 @@ namespace Market.Models.Data
             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = login;
             command.Parameters.Add("@password", MySqlDbType.VarChar).Value = password;
 
+            command.ExecuteNonQuery();
+        }
+        public void RemoveUser(string login)
+        {
+            MySqlCommand command = new MySqlCommand($"delete from {USERS} where {LOGIN} = @login", SqlConnection);
+            command.Parameters.Add("@login", MySqlDbType.VarChar).Value = login;
+            
             command.ExecuteNonQuery();
         }
         public bool Exists(string login)

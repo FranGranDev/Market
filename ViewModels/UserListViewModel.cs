@@ -17,7 +17,7 @@ namespace Market.ViewModels
             this.usersManager = usersManager;
 
             users = new ObservableCollection<UserViewModel>();
-
+            
             BackCommand = new NavigateCommand(backNavigationService);
 
             UpdateUserList();
@@ -36,8 +36,17 @@ namespace Market.ViewModels
 
             foreach (User user in usersManager.Users)
             {
-                users.Add(new UserViewModel(user));
+                UserViewModel userViewModel = new UserViewModel(user, DeleteUserItem);
+
+                users.Add(userViewModel);
             }
+        }
+
+        private void DeleteUserItem(UserViewModel user)
+        {
+            usersManager.DeleteUser(user.Login);
+
+            UpdateUserList();
         }
     }
 }

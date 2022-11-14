@@ -4,6 +4,7 @@ using Market.Stores;
 using Market.View;
 using Market.Services;
 using Market.ViewModels;
+using Market.ViewModels.Factory;
 using System;
 using System.Windows;
 
@@ -14,6 +15,7 @@ namespace Market
     {
         private readonly UsersManager usersManager;
         private readonly NavigationStore navigationStore;
+        private readonly ViewModelFactory viewModelFactory;
         private readonly IDataBase dataBase;
 
         public App()
@@ -21,11 +23,12 @@ namespace Market
             dataBase = new DataBase();
             usersManager = new UsersManager(dataBase);
             navigationStore = new NavigationStore();
+            viewModelFactory = new ViewModelFactory(usersManager, navigationStore);
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            navigationStore.CurrantViewModel = CreateStartViewModel();
+            navigationStore.CurrantViewModel = viewModelFactory.CreateStartViewModel();
 
             MainWindow = new MainWindow()
             {
@@ -35,26 +38,5 @@ namespace Market
 
             base.OnStartup(e);
         }
-
-        private StartViewModel CreateStartViewModel()
-        {
-            return new StartViewModel(new NavigationService(navigationStore, CreateRegistrationViewModel), new NavigationService(navigationStore, CreateUserListViewModel));
-        }
-
-        private RegistrationViewModel CreateRegistrationViewModel()
-        {
-            return new RegistrationViewModel(usersManager, new NavigationService(navigationStore, CreateStartViewModel));
-        }
-
-        private LoginViewModel CreateLoginViewModel()
-        {
-            return new LoginViewModel(usersManager, new NavigationService(navigationStore, CreateStartViewModel));
-        }
-
-        private UserListViewModel CreateUserListViewModel()
-        {
-            return new UserListViewModel(usersManager, new NavigationService(navigationStore, CreateStartViewModel));
-        }
-
     }
 }

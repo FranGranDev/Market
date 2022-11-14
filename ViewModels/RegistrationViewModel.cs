@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Market.ViewModels
 {
-    class RegistrationViewModel : ViewModelBase
+    public class RegistrationViewModel : ViewModelBase
     {
         public RegistrationViewModel(UsersManager usersManager, NavigationService navigationService)
         {

@@ -1,4 +1,5 @@
 ﻿using Market.Models.Users;
+using Market.Services;
 using Market.Models.Exceptions;
 using Market.ViewModels;
 using System.Windows;
@@ -12,11 +13,16 @@ namespace Market.Commands
     {
         private readonly UsersManager usersManager;
         private readonly LoginViewModel loginViewModel;
+        private readonly NavigationService adminNavigationService;
+        private readonly NavigationService userNavigationService;
 
-        public LogInCommand(LoginViewModel loginViewModel, UsersManager usersManager)
+        public LogInCommand(LoginViewModel loginViewModel, NavigationService adminNavigationService, NavigationService userNavigationService, UsersManager usersManager)
         {
             this.loginViewModel = loginViewModel;
             this.usersManager = usersManager;
+
+            this.adminNavigationService = adminNavigationService;
+            this.userNavigationService = userNavigationService;
 
             loginViewModel.PropertyChanged += OnViewModelChange;
         }
@@ -26,6 +32,15 @@ namespace Market.Commands
             try
             {
                 usersManager.LogIn(loginViewModel.Login, loginViewModel.Password);
+
+                if(usersManager.Currant.IsAdmin)
+                {
+                    adminNavigationService.Navigate();
+                }
+                else
+                {
+                    adminNavigationService.Navigate();
+                }
             }
             catch(NoUserFindedException)
             {
@@ -34,6 +49,10 @@ namespace Market.Commands
             catch(InvalidLoginOrPasswordException)
             {
                 MessageBox.Show("Invalid login or password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch
+            {
+                MessageBox.Show("Error", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

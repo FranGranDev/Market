@@ -10,9 +10,9 @@ namespace Market.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        public LoginViewModel(UsersManager usersManager, NavigationService backNavigationService)
+        public LoginViewModel(UsersManager usersManager, NavigationService adminNavigationService, NavigationService backNavigationService)
         {
-            LogInCommand = new LogInCommand(this, usersManager);
+            LogInCommand = new LogInCommand(this, adminNavigationService, null, usersManager);
             BackCommand = new NavigateCommand(backNavigationService);
         }
 

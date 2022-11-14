@@ -8,6 +8,7 @@ namespace Market.Models.Data
     {
         User GetUser(string login, string password);
         void AddNewUser(string login, string password);
+        void RemoveUser(string login);
         bool Exists(string login);
         List<User> GetAllUsers();
     }

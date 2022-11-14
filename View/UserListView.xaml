@@ -76,8 +76,9 @@
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Button 
-                                                    Content="Block"
-                                                    HorizontalAlignment="Center"/>
+                                                    Content="Delete"
+                                                    HorizontalAlignment="Center"
+                                                    Command="{Binding DeleteCommand}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>

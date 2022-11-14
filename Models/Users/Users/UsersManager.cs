@@ -43,6 +43,19 @@ namespace Market.Models.Users
                 throw new UserAlreadyExistsException();
             }
         }
+        public void DeleteUser(string login)
+        {
+            if (dataBase.Exists(login))
+            {
+                dataBase.RemoveUser(login);
+            }
+            else
+            {
+                throw new NoUserFindedException(login);
+            }
+        }
+
+
         public void LogIn(string login, string password)
         {
             if (!dataBase.Exists(login))
