@@ -16,9 +16,10 @@ namespace Market.Models.Data
 
         public DataBase()
         {
-            sqlConnection = new MySqlConnection("server=localhost;port=3306;username=root;password=Lolipup228;database=Market");
+            sqlConnection = new MySqlConnection("server=localhost;port=3306;username=root;password=qwerty123;database=Market");
 
             OpenConnection();
+            CheckForAdmin();
         }
         ~DataBase()
         {
@@ -44,6 +45,14 @@ namespace Market.Models.Data
             }
         }
 
+
+        private void CheckForAdmin()
+        {
+            if(!Exists("admin"))
+            {
+                AddNewUser("admin", "admin", true);
+            }
+        }
 
 
         public User GetUser(string login, string password)
@@ -104,11 +113,13 @@ namespace Market.Models.Data
 
             return users;
         }
-        public void AddNewUser(string login, string password)
+        public void AddNewUser(string login, string password, bool isAdmin = false)
         {
-            MySqlCommand command = new MySqlCommand($"insert into {USERS}({LOGIN}, {PASSWORD}, {IS_ADMIN}) values (@login, @password, false)", SqlConnection);
+            MySqlCommand command = new MySqlCommand($"insert into {USERS}({LOGIN}, {PASSWORD}, {IS_ADMIN}) values (@login, @password, @isAdmin)", SqlConnection);
             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = login;
             command.Parameters.Add("@password", MySqlDbType.VarChar).Value = password;
+            command.Parameters.Add("@isAdmin", MySqlDbType.VarBinary).Value = isAdmin ? 1 : 0;
+
 
             command.ExecuteNonQuery();
         }

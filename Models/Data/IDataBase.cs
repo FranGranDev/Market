@@ -7,7 +7,7 @@ namespace Market.Models.Data
     public interface IDataBase
     {
         User GetUser(string login, string password);
-        void AddNewUser(string login, string password);
+        void AddNewUser(string login, string password, bool isAdmin = false);
         void RemoveUser(string login);
         bool Exists(string login);
         List<User> GetAllUsers();
