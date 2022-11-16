@@ -1,5 +1,6 @@
 ﻿using Market.Services;
 using Market.Models.Users;
+using Market.Models.Items;
 using Market.Stores;
 
 
@@ -7,18 +8,20 @@ namespace Market.ViewModels.Factory
 {
     public class ViewModelFactory
     {
-        public ViewModelFactory(UsersManager usersManager, NavigationStore navigationStore)
+        public ViewModelFactory(UsersManager usersManager, SlotsManager slotsManager, NavigationStore navigationStore)
         {
+            this.slotsManager = slotsManager;
             this.usersManager = usersManager;
             this.navigationStore = navigationStore;
         }
 
         private readonly UsersManager usersManager;
+        private readonly SlotsManager slotsManager;
         private readonly NavigationStore navigationStore;
 
         public StartViewModel CreateStartViewModel()
         {
-            return new StartViewModel(new NavigationService(navigationStore, CreateRegistrationViewModel), new NavigationService(navigationStore, CreateLoginViewModel));
+            return new StartViewModel(new NavigationService(navigationStore, CreateRegistrationViewModel), new NavigationService(navigationStore, CreateAdminViewModel));
         }
 
         public RegistrationViewModel CreateRegistrationViewModel()
@@ -38,8 +41,17 @@ namespace Market.ViewModels.Factory
 
         public AdminViewModel CreateAdminViewModel()
         {
-            return new AdminViewModel(usersManager, new NavigationService(navigationStore, CreateUserListViewModel), new NavigationService(navigationStore, CreateLoginViewModel));
+            return new AdminViewModel(usersManager, new NavigationService(navigationStore, CreateUserListViewModel), new NavigationService(navigationStore, CreateAdminMarketViewModel), new NavigationService(navigationStore, CreateLoginViewModel));
         }
 
+        public AdminMarketViewModel CreateAdminMarketViewModel()
+        {
+            return new AdminMarketViewModel(slotsManager, new NavigationService(navigationStore, CreateAdminViewModel), new NavigationService(navigationStore, CreateMarketSlotCreationViewModel));
+        }
+
+        public MarketSlotCreationViewModel CreateMarketSlotCreationViewModel()
+        {
+            return new MarketSlotCreationViewModel(slotsManager, new NavigationService(navigationStore, CreateAdminMarketViewModel));
+        }
     }
 }

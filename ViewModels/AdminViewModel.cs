@@ -10,8 +10,9 @@ namespace Market.ViewModels
 {
     public class AdminViewModel : ViewModelBase
     {
-        public AdminViewModel(UsersManager usersManager, NavigationService userListNavigationService, NavigationService backNavigationService)
+        public AdminViewModel(UsersManager usersManager, NavigationService userListNavigationService, NavigationService marketNavigationService, NavigationService backNavigationService)
         {
+            MarketCommand = new NavigateCommand(marketNavigationService);
             UserListCommand = new NavigateCommand(userListNavigationService);
             BackCommand = new LogOutCommand(usersManager, backNavigationService);
         }

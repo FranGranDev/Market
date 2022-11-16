@@ -25,6 +25,12 @@
             <DataTemplate DataType="{x:Type vms:AdminViewModel}">
                 <local:AdminView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:AdminMarketViewModel}">
+                <local:AdminMarketView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:MarketSlotCreationViewModel}">
+                <local:MarketSlotCreationView/>
+            </DataTemplate>
         </Grid.Resources>
 
         <ContentControl Content="{Binding CurrantViewModel}"/>
