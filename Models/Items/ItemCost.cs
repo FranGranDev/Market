@@ -33,7 +33,7 @@ namespace Market.Models.Items
 
         public int FinalCost 
         {
-            get => (int)Math.Round(BaseCost * sale);
+            get => (int)Math.Round(BaseCost * Math.Max(100 - sale, 0) / 100);
         }
     }
 }

@@ -48,9 +48,7 @@
                     </Grid>
                     <Grid Grid.Row="1" Margin="0 25 0 0">
                         <ScrollViewer VerticalScrollBarVisibility="Auto" >
-                            <ListView>
-                                <ListViewItem/>
-                                <ListViewItem/>
+                            <ListView ItemsSource="{Binding Slots}">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -58,13 +56,12 @@
                                 </ListView.ItemContainerStyle>
                                 <ListView.View>
                                     <GridView>
-
                                         <GridViewColumn Header="Brand">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBox
+                                                    <TextBlock
                                                     MinWidth="50"
-                                                    Text="{Binding Brand}"
+                                                    Text="{Binding Brand, UpdateSourceTrigger=PropertyChanged}"
                                                     HorizontalAlignment="Center"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
@@ -73,9 +70,9 @@
                                         <GridViewColumn Header="Model">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBox
+                                                    <TextBlock
                                                     MinWidth="50"   
-                                                    Text="{Binding Model}"
+                                                    Text="{Binding Model, UpdateSourceTrigger=PropertyChanged}"
                                                     HorizontalAlignment="Center"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
@@ -84,17 +81,7 @@
                                         <GridViewColumn Header="Release">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <DatePicker DisplayDate="{Binding Release}"/>
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-
-                                        <GridViewColumn Header="Final Cost">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBlock 
-                                                    Text="{Binding FinalCost}"                                                        
-                                                    HorizontalAlignment="Center"/>
+                                                    <DatePicker SelectedDate="{Binding Release, UpdateSourceTrigger=PropertyChanged}"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
@@ -104,7 +91,7 @@
                                                 <DataTemplate>
                                                     <TextBox
                                                     MinWidth="50"
-                                                    Text="{Binding BaseCost}"                                                        
+                                                    Text="{Binding BaseCost, UpdateSourceTrigger=PropertyChanged}"                                                        
                                                     HorizontalAlignment="Center"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
@@ -115,18 +102,28 @@
                                                 <DataTemplate>
                                                     <TextBox
                                                     MinWidth="50"                                                       
-                                                    Text="{Binding Sale}"                                                        
+                                                    Text="{Binding Sale, UpdateSourceTrigger=PropertyChanged}"                                                        
                                                     HorizontalAlignment="Center"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
 
+                                        <GridViewColumn Header="Final Cost">
+                                            <GridViewColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock 
+                                                    Text="{Binding FinalCost, UpdateSourceTrigger=PropertyChanged}"                                                        
+                                                    HorizontalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </GridViewColumn.CellTemplate>
+                                        </GridViewColumn>
+                                        
                                         <GridViewColumn Header="Count">
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <TextBox
                                                     MinWidth="50"  
-                                                    Text="{Binding Count}"                                                        
+                                                    Text="{Binding Count, UpdateSourceTrigger=PropertyChanged}"                                                        
                                                     HorizontalAlignment="Center"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
