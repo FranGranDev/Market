@@ -18,10 +18,10 @@ namespace Market.ViewModels
 
         private string model;
         private string brand;
-        private DateTime release;
-        private int baseCost;
-        private double sale;
-        private int count;
+        private DateTime release = DateTime.Now;
+        private string baseCost;
+        private string sale;
+        private string count;
 
 
         public string Model
@@ -60,7 +60,7 @@ namespace Market.ViewModels
                 OnPropertyChanged(nameof(Brand));
             }
         }
-        public int BaseCost
+        public string BaseCost
         {
             get
             {
@@ -72,7 +72,7 @@ namespace Market.ViewModels
                 OnPropertyChanged(nameof(BaseCost));
             }
         }
-        public double Sale
+        public string Sale
         {
             get
             {
@@ -84,7 +84,7 @@ namespace Market.ViewModels
                 OnPropertyChanged(nameof(Sale));
             }
         }
-        public int Count
+        public string Count
         {
             get
             {

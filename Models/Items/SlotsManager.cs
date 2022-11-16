@@ -20,11 +20,11 @@ namespace Market.Models.Items
         }
 
 
-        public void CreateNewSlot(MarketItem item, ItemCost cost)
+        public void CreateNewSlot(MarketItem item, ItemCost cost, int count)
         {
-            //MarketSlot slot = new MarketSlot(item, cost);
+            MarketSlot slot = new MarketSlot(-1, item, cost, count);
 
-            //dataBase.AddSlot(slot);
+            dataBase.AddSlot(slot);
         }
         public void OverrideSlot(MarketSlot slot)
         {

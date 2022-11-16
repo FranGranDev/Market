@@ -21,14 +21,14 @@
 
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
                         <TextBlock 
                             Text="Admin Market Panel"
                             FontSize="30"
-                            HorizontalAlignment="Center"
+                            HorizontalAlignment="Stretch"
                             FontWeight="Bold"/>
                         <Button
                         Grid.Column="1"
