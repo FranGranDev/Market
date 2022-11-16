@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Market.Models.Data
 {
-    public interface IDataBase
+    public interface IUserDataBase
     {
         User GetUser(string login, string password);
         void AddNewUser(string login, string password, bool isAdmin = false);

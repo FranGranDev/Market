@@ -14,13 +14,13 @@ namespace Market.Models.Users
         public const int MIN_PASSWORD_LENGHT = 4;
         public const int MAX_PASSWORD_LENGHT = 16;
 
-        public UsersManager(IDataBase dataBase)
+        public UsersManager(IUserDataBase dataBase)
         {
             this.dataBase = dataBase;
         }
 
 
-        private IDataBase dataBase;
+        private IUserDataBase dataBase;
 
 
         public List<User> Users

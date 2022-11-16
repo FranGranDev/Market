@@ -113,7 +113,8 @@
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Data\DataBase.cs" />
-    <Compile Include="Models\Data\IDataBase.cs" />
+    <Compile Include="Models\Data\IMarketDataBase.cs" />
+    <Compile Include="Models\Data\IUserDataBase.cs" />
     <Compile Include="Models\Exceptions\InvalidConfirmException.cs" />
     <Compile Include="Models\Exceptions\InvalidLoginException.cs" />
     <Compile Include="Models\Exceptions\InvalidLoginOrPasswordException.cs" />
@@ -121,8 +122,12 @@
     <Compile Include="Models\Exceptions\NoUserFindedException.cs" />
     <Compile Include="Models\Exceptions\UserAlreadyExistsException.cs" />
     <Compile Include="Models\Exceptions\UserNotSingInException.cs" />
-    <Compile Include="Models\Users\Users\Admin.cs" />
-    <Compile Include="Models\Users\Users\User.cs" />
+    <Compile Include="Models\Items\ItemCost.cs" />
+    <Compile Include="Models\Items\SlotsManager.cs" />
+    <Compile Include="Models\Items\MarketItem.cs" />
+    <Compile Include="Models\Items\MarketSlot.cs" />
+    <Compile Include="Models\Users\Admin.cs" />
+    <Compile Include="Models\Users\User.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
@@ -146,7 +151,7 @@
     <Compile Include="View\StartView.xaml.cs">
       <DependentUpon>StartView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users\Users\UsersManager.cs" />
+    <Compile Include="Models\Users\UsersManager.cs" />
     <Compile Include="View\UserListView.xaml.cs">
       <DependentUpon>UserListView.xaml</DependentUpon>
     </Compile>

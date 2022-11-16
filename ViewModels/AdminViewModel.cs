@@ -17,6 +17,7 @@ namespace Market.ViewModels
         }
 
         public ICommand UserListCommand { get; }
+        public ICommand MarketCommand { get; }
         public ICommand BackCommand { get; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Market.Models.Users;
 using Market.Models.Data;
+using Market.Models.Items;
 using Market.Stores;
 using Market.View;
 using Market.Services;
@@ -16,7 +17,8 @@ namespace Market
         private readonly UsersManager usersManager;
         private readonly NavigationStore navigationStore;
         private readonly ViewModelFactory viewModelFactory;
-        private readonly IDataBase dataBase;
+        private readonly DataBase dataBase;
+
 
         public App()
         {
@@ -24,6 +26,7 @@ namespace Market
             usersManager = new UsersManager(dataBase);
             navigationStore = new NavigationStore();
             viewModelFactory = new ViewModelFactory(usersManager, navigationStore);
+
         }
 
         protected override void OnStartup(StartupEventArgs e)
