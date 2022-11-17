@@ -62,7 +62,7 @@ namespace Market.Models.Users
             {
                 throw new NoUserFindedException(login);
             }
-            User user = dataBase.GetUser(login, password);
+            User user = dataBase.GetUser(login);
             if (!user.ComparePassword(password))
             {
                 throw new InvalidLoginOrPasswordException(login);

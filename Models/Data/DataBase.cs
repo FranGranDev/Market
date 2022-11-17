@@ -78,11 +78,10 @@ namespace Market.Models.Data
             }
         }
 
-        public User GetUser(string login, string password)
+        public User GetUser(string login)
         {
-            MySqlCommand command = new MySqlCommand($"select * from {USERS} where {LOGIN} = @login and {PASSWORD} = @password", SqlConnection);
+            MySqlCommand command = new MySqlCommand($"select * from {USERS} where {LOGIN} = @login", SqlConnection);
             command.Parameters.Add("@login", MySqlDbType.VarChar).Value = login;
-            command.Parameters.Add("@password", MySqlDbType.VarChar).Value = password;
 
             List<User> users = new List<User>();
 

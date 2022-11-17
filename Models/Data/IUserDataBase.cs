@@ -6,7 +6,7 @@ namespace Market.Models.Data
 {
     public interface IUserDataBase
     {
-        User GetUser(string login, string password);
+        User GetUser(string login);
         void AddNewUser(string login, string password, bool isAdmin = false);
         void RemoveUser(string login);
         bool Exists(string login);
