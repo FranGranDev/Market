@@ -9,13 +9,12 @@ using System.Collections.ObjectModel;
 
 namespace Market.ViewModels
 {
-    public class AdminMarketViewModel : ViewModelBase
+    public class UserMarketSlotsViewModel : ViewModelBase
     {
-        public AdminMarketViewModel(SlotsManager slotsManager, NavigationService backNavigationService, NavigationService createNewNavigationService)
+        public UserMarketSlotsViewModel(SlotsManager slotsManager, NavigationService backNavigationService)
         {
             this.slotsManager = slotsManager;
 
-            CreateCommand = new NavigateCommand(createNewNavigationService);
             BackCommand = new NavigateCommand(backNavigationService);
 
             slots = new ObservableCollection<MarketSlotViewModel>();
@@ -34,9 +33,9 @@ namespace Market.ViewModels
         {
             Slots.Clear();
 
-            foreach(MarketSlot slot in slotsManager.Slots)
+            foreach (MarketSlot slot in slotsManager.Slots)
             {
-                Slots.Add(new MarketSlotViewModel(slot, slotsManager.OverrideSlot, slotsManager.DeleteSlot));
+                Slots.Add(new MarketSlotViewModel(slot, null, null));
             }
         }
 

@@ -22,14 +22,20 @@
             <DataTemplate DataType="{x:Type vms:UserListViewModel}">
                 <local:UserListView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type vms:AdminViewModel}">
+            <DataTemplate DataType="{x:Type vms:AdminPanelViewModel}">
                 <local:AdminView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type vms:AdminMarketViewModel}">
-                <local:AdminMarketView/>
+            <DataTemplate DataType="{x:Type vms:AdminMarketSlotsViewModel}">
+                <local:MarketSlotsView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type vms:MarketSlotCreationViewModel}">
                 <local:MarketSlotCreationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:UserPanelViewModel}">
+                <local:UserView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:UserMarketSlotsViewModel}">
+                <local:UserMarketSlotsView/>
             </DataTemplate>
         </Grid.Resources>
 

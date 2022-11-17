@@ -39,7 +39,7 @@ namespace Market.Commands
                 }
                 else
                 {
-                    adminNavigationService.Navigate();
+                    userNavigationService.Navigate();
                 }
             }
             catch(NoUserFindedException)

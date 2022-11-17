@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#ffdadada">
-        <Border MinWidth="700" MaxWidth="800" MinHeight="300" MaxHeight="500" Margin="25" Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="20">
+        <Border MinWidth="300" MaxWidth="500" MinHeight="300" MaxHeight="500" Margin="25" Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="20">
             <Border.Effect>
                 <DropShadowEffect 
                     BlurRadius="10" 
@@ -56,7 +56,7 @@
                                                 <TextBlock 
                                                     Text="{Binding Login}"
                                                     Padding="20 0 20 0"
-                                                    HorizontalAlignment="Center"/>
+                                                    HorizontalAlignment="Stretch"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -67,7 +67,7 @@
                                                 <TextBlock 
                                                     Text="{Binding State}"
                                                     Padding="20 0 20 0"
-                                                    HorizontalAlignment="Center"/>
+                                                    HorizontalAlignment="Stretch"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -77,7 +77,7 @@
                                             <DataTemplate>
                                                 <Button 
                                                     Content="Delete"
-                                                    HorizontalAlignment="Center"
+                                                    HorizontalAlignment="Right"
                                                     Command="{Binding DeleteCommand}"/>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>

@@ -18,9 +18,9 @@ namespace Market.View
     /// <summary>
     /// Логика взаимодействия для AdminMarketView.xaml
     /// </summary>
-    public partial class AdminMarketView : UserControl
+    public partial class MarketSlotsView : UserControl
     {
-        public AdminMarketView()
+        public MarketSlotsView()
         {
             InitializeComponent();
         }

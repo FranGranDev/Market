@@ -1,5 +1,6 @@
 ﻿using Market.Models.Exceptions;
 using Market.Models.Users;
+using Market.Services;
 using Market.ViewModels;
 using System;
 using System.ComponentModel;
@@ -13,11 +14,13 @@ namespace Market.Commands
     {
         private readonly UsersManager usersManager;
         private readonly RegistrationViewModel registrationViewModel;
+        private readonly NavigationService userPanelNavigation;
 
-        public RegistrateCommand(RegistrationViewModel registrationViewModel, UsersManager usersManager)
+        public RegistrateCommand(RegistrationViewModel registrationViewModel, UsersManager usersManager, NavigationService userPanelNavigation)
         {
             this.registrationViewModel = registrationViewModel;
             this.usersManager = usersManager;
+            this.userPanelNavigation = userPanelNavigation;
 
             registrationViewModel.PropertyChanged += OnViewModelChange;
         }
@@ -27,6 +30,10 @@ namespace Market.Commands
             try
             {
                 usersManager.RegistrateNew(registrationViewModel.Login, registrationViewModel.Password);
+                usersManager.LogIn(registrationViewModel.Login, registrationViewModel.Password);
+
+
+                userPanelNavigation.Navigate();
             }
             catch (UserAlreadyExistsException)
             {

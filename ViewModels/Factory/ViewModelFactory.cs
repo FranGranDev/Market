@@ -21,32 +21,42 @@ namespace Market.ViewModels.Factory
 
         public StartViewModel CreateStartViewModel()
         {
-            return new StartViewModel(new NavigationService(navigationStore, CreateRegistrationViewModel), new NavigationService(navigationStore, CreateAdminViewModel));
+            return new StartViewModel(new NavigationService(navigationStore, CreateRegistrationViewModel), new NavigationService(navigationStore, CreateLoginViewModel));
         }
 
         public RegistrationViewModel CreateRegistrationViewModel()
         {
-            return new RegistrationViewModel(usersManager, new NavigationService(navigationStore, CreateStartViewModel));
+            return new RegistrationViewModel(usersManager, new NavigationService(navigationStore, CreateStartViewModel), new NavigationService(navigationStore, CreateUserPanelViewModel));
         }
 
         public LoginViewModel CreateLoginViewModel()
         {
-            return new LoginViewModel(usersManager, new NavigationService(navigationStore, CreateAdminViewModel), new NavigationService(navigationStore, CreateStartViewModel));
+            return new LoginViewModel(usersManager, new NavigationService(navigationStore, CreateAdminPanelViewModel), new NavigationService(navigationStore, CreateUserPanelViewModel), new NavigationService(navigationStore, CreateStartViewModel));
         }
 
         public UserListViewModel CreateUserListViewModel()
         {
-            return new UserListViewModel(usersManager, new NavigationService(navigationStore, CreateAdminViewModel));
+            return new UserListViewModel(usersManager, new NavigationService(navigationStore, CreateAdminPanelViewModel));
         }
 
-        public AdminViewModel CreateAdminViewModel()
+        public AdminPanelViewModel CreateAdminPanelViewModel()
         {
-            return new AdminViewModel(usersManager, new NavigationService(navigationStore, CreateUserListViewModel), new NavigationService(navigationStore, CreateAdminMarketViewModel), new NavigationService(navigationStore, CreateLoginViewModel));
+            return new AdminPanelViewModel(usersManager, new NavigationService(navigationStore, CreateUserListViewModel), new NavigationService(navigationStore, CreateAdminMarketViewModel), new NavigationService(navigationStore, CreateLoginViewModel));
         }
 
-        public AdminMarketViewModel CreateAdminMarketViewModel()
+
+        public UserPanelViewModel CreateUserPanelViewModel()
         {
-            return new AdminMarketViewModel(slotsManager, new NavigationService(navigationStore, CreateAdminViewModel), new NavigationService(navigationStore, CreateMarketSlotCreationViewModel));
+            return new UserPanelViewModel(usersManager, new NavigationService(navigationStore, CreateUserMarketViewModel), new NavigationService(navigationStore, CreateLoginViewModel));
+        }
+
+        public AdminMarketSlotsViewModel CreateAdminMarketViewModel()
+        {
+            return new AdminMarketSlotsViewModel(slotsManager, new NavigationService(navigationStore, CreateAdminPanelViewModel), new NavigationService(navigationStore, CreateMarketSlotCreationViewModel));
+        }
+        public UserMarketSlotsViewModel CreateUserMarketViewModel()
+        {
+            return new UserMarketSlotsViewModel(slotsManager, new NavigationService(navigationStore, CreateUserPanelViewModel));
         }
 
         public MarketSlotCreationViewModel CreateMarketSlotCreationViewModel()

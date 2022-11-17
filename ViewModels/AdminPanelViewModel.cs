@@ -8,9 +8,9 @@ using System;
 
 namespace Market.ViewModels
 {
-    public class AdminViewModel : ViewModelBase
+    public class AdminPanelViewModel : ViewModelBase
     {
-        public AdminViewModel(UsersManager usersManager, NavigationService userListNavigationService, NavigationService marketNavigationService, NavigationService backNavigationService)
+        public AdminPanelViewModel(UsersManager usersManager, NavigationService userListNavigationService, NavigationService marketNavigationService, NavigationService backNavigationService)
         {
             MarketCommand = new NavigateCommand(marketNavigationService);
             UserListCommand = new NavigateCommand(userListNavigationService);

@@ -9,11 +9,11 @@ namespace Market.ViewModels
 {
     public class RegistrationViewModel : ViewModelBase
     {
-        public RegistrationViewModel(UsersManager usersManager, NavigationService navigationService)
+        public RegistrationViewModel(UsersManager usersManager, NavigationService backNavigationService, NavigationService userPanelNavigationService)
         {
-            RegistrateCommand = new RegistrateCommand(this, usersManager);
+            RegistrateCommand = new RegistrateCommand(this, usersManager, userPanelNavigationService);
 
-            BackCommand = new NavigateCommand(navigationService);
+            BackCommand = new NavigateCommand(backNavigationService);
         }
 
         private string login;
