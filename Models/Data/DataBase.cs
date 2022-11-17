@@ -9,6 +9,18 @@ using Market.Models.Items;
 
 namespace Market.Models.Data
 {
+    /*
+     * CREATE TABLE `market`.`items` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `model` VARCHAR(45) NOT NULL,
+  `brand` VARCHAR(45) NOT NULL,
+  `releaseDate` DATE NOT NULL,
+  `baseCost` INT NOT NULL,
+  `sale` DOUBLE NOT NULL,
+  `count` INT NOT NULL,
+  PRIMARY KEY (`id`));
+
+     */
     public class DataBase : IUserDataBase, IMarketDataBase
     {
         private const string USERS = "users";
@@ -31,8 +43,6 @@ namespace Market.Models.Data
 
             OpenConnection();
             CheckForAdmin();
-
-            GetAllSlots();
         }
         ~DataBase()
         {
@@ -166,22 +176,37 @@ namespace Market.Models.Data
                 command.Parameters.Add("@date", MySqlDbType.Date).Value = item.Item.Release.ToString("yyyy-MM-dd");
                 command.Parameters.Add("@cost", MySqlDbType.Int32).Value = item.Cost.BaseCost;
                 command.Parameters.Add("@sale", MySqlDbType.Double).Value = item.Cost.Sale;
-                command.Parameters.Add("@count", MySqlDbType.Double).Value = item.Count;
+                command.Parameters.Add("@count", MySqlDbType.Int32).Value = item.Count;
 
                 command.ExecuteNonQuery();
             }
         }
         public void RemoveSlot(int id)
         {
-            throw new NotImplementedException();
+            MySqlCommand command = new MySqlCommand($"delete from {ITEMS} where id = {id}", SqlConnection);
+            using (command)
+            {
+                command.ExecuteNonQuery();
+            }
         }
         public MarketSlot GetSlot(int id)
         {
             throw new NotImplementedException();
         }
-        public void ChangeSlot(int id, MarketSlot newItem)
+        public void ChangeSlot(int id, MarketSlot item)
         {
-            
+            MySqlCommand command = new MySqlCommand($"update {ITEMS} set {MODEL} = @model, {BRAND} = @brand, {RELEASE_DATE} = @date, {BASE_COST} = @cost, {SALE} = @sale, {COUNT} = @count where id = {item.id}", SqlConnection);
+            using (command)
+            {
+                command.Parameters.Add("@model", MySqlDbType.VarChar).Value = item.Item.Model;
+                command.Parameters.Add("@brand", MySqlDbType.VarChar).Value = item.Item.Brand;
+                command.Parameters.Add("@date", MySqlDbType.Date).Value = item.Item.Release.ToString("yyyy-MM-dd");
+                command.Parameters.Add("@cost", MySqlDbType.Int32).Value = item.Cost.BaseCost;
+                command.Parameters.Add("@sale", MySqlDbType.Double).Value = item.Cost.Sale;
+                command.Parameters.Add("@count", MySqlDbType.Double).Value = item.Count;
+
+                command.ExecuteNonQuery();
+            }
         }
         public List<MarketSlot> GetAllSlots()
         {

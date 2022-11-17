@@ -1,4 +1,5 @@
 ﻿using Market.Models.Items;
+using Market.Commands;
 using System;
 using System.Windows.Input;
 
@@ -6,12 +7,16 @@ namespace Market.ViewModels
 {
     public class MarketSlotViewModel : ViewModelBase
     {
-        public MarketSlotViewModel(MarketSlot slot)
+        public MarketSlotViewModel(MarketSlot slot, Action<MarketSlot> onChanged, Action<MarketSlot> onDeleted)
         {
             this.slot = slot;
+            this.onChanged = onChanged;
+
+            DeleteCommand = new ActionCommand(() => onDeleted?.Invoke(slot));
         }
 
         private readonly MarketSlot slot;
+        private readonly Action<MarketSlot> onChanged;
 
         public string Model
         {
@@ -43,6 +48,7 @@ namespace Market.ViewModels
             set
             {
                 slot.Cost.BaseCost = value;
+                onChanged?.Invoke(slot);
             }
         }
         public double Sale
@@ -51,6 +57,7 @@ namespace Market.ViewModels
             set
             {
                 slot.Cost.Sale = value;
+                onChanged?.Invoke(slot);
             }
         }
         public int FinalCost
@@ -67,6 +74,7 @@ namespace Market.ViewModels
             set
             {
                 slot.Count = value;
+                onChanged?.Invoke(slot);
             }
         }
 

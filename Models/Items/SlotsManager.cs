@@ -1,7 +1,8 @@
 ﻿using Market.Models.Data;
 using System.Collections.Generic;
 using Market.Models.Users;
-
+using System.Linq;
+using System;
 
 namespace Market.Models.Items
 {
@@ -16,9 +17,13 @@ namespace Market.Models.Items
 
         public List<MarketSlot> Slots
         {
-            get => dataBase.GetAllSlots();
+            get
+            {
+                return dataBase.GetAllSlots();
+            }
         }
 
+        public event Action OnItemsListChanged;
 
         public void CreateNewSlot(MarketItem item, ItemCost cost, int count)
         {
@@ -33,6 +38,8 @@ namespace Market.Models.Items
         public void DeleteSlot(MarketSlot slot)
         {
             dataBase.RemoveSlot(slot.id);
+
+            OnItemsListChanged?.Invoke();
         }
 
 
@@ -40,5 +47,6 @@ namespace Market.Models.Items
         {
             
         }
+
     }
 }

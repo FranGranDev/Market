@@ -28,7 +28,18 @@ namespace Market.Models.Items
         public double Sale
         {
             get { return sale; }
-            set { sale = value; }
+            set
+            {
+                if(value > 100)
+                {
+                    value = 100;
+                }
+                else if(value < 0)
+                {
+                    value = 0;
+                }
+                sale = value;
+            }
         }
 
         public int FinalCost 

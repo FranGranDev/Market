@@ -15,12 +15,13 @@ namespace Market.ViewModels
         {
             this.slotsManager = slotsManager;
 
-
             CreateCommand = new NavigateCommand(createNewNavigationService);
             BackCommand = new NavigateCommand(backNavigationService);
 
             slots = new ObservableCollection<MarketSlotViewModel>();
+
             UpdateSlots();
+            slotsManager.OnItemsListChanged += UpdateSlots;
         }
 
         private readonly SlotsManager slotsManager;
@@ -35,7 +36,7 @@ namespace Market.ViewModels
 
             foreach(MarketSlot slot in slotsManager.Slots)
             {
-                Slots.Add(new MarketSlotViewModel(slot));
+                Slots.Add(new MarketSlotViewModel(slot, slotsManager.OverrideSlot, slotsManager.DeleteSlot));
             }
         }
 
