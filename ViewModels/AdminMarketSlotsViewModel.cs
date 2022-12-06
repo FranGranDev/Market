@@ -36,7 +36,7 @@ namespace Market.ViewModels
 
             foreach(MarketSlot slot in slotsManager.Slots)
             {
-                Slots.Add(new MarketSlotViewModel(slot, slotsManager.OverrideSlot, slotsManager.DeleteSlot));
+                Slots.Add(new MarketSlotViewModel(slot, slotsManager.OverrideSlot, slotsManager.DeleteSlot, null));
             }
         }
 

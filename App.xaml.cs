@@ -33,7 +33,7 @@ namespace Market
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            navigationStore.CurrantViewModel = viewModelFactory.CreateStartViewModel();
+            navigationStore.CurrantViewModel = viewModelFactory.CreateStartViewModel(null);
 
             MainWindow = new MainWindow()
             {

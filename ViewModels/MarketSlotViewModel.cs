@@ -7,12 +7,13 @@ namespace Market.ViewModels
 {
     public class MarketSlotViewModel : ViewModelBase
     {
-        public MarketSlotViewModel(MarketSlot slot, Action<MarketSlot> onChanged, Action<MarketSlot> onDeleted)
+        public MarketSlotViewModel(MarketSlot slot, Action<MarketSlot> onChanged, Action<MarketSlot> onDeleted, Action<MarketSlot> onBuy)
         {
             this.slot = slot;
             this.onChanged = onChanged;
 
             DeleteCommand = new ActionCommand(() => onDeleted?.Invoke(slot));
+            BuyCommand = new ActionCommand(() => onBuy?.Invoke(slot));
         }
 
         private readonly MarketSlot slot;
@@ -79,5 +80,6 @@ namespace Market.ViewModels
         }
 
         public ICommand DeleteCommand { get; }
+        public ICommand BuyCommand { get; }
     }
 }

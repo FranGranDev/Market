@@ -11,10 +11,10 @@ namespace Market.ViewModels
 {
     public class UserMarketSlotsViewModel : ViewModelBase
     {
-        public UserMarketSlotsViewModel(SlotsManager slotsManager, NavigationService backNavigationService)
+        public UserMarketSlotsViewModel(SlotsManager slotsManager, NavigationService reserveNavigationService, NavigationService backNavigationService)
         {
             this.slotsManager = slotsManager;
-
+            this.reserveNavigationService = reserveNavigationService;
             BackCommand = new NavigateCommand(backNavigationService);
 
             slots = new ObservableCollection<MarketSlotViewModel>();
@@ -24,6 +24,7 @@ namespace Market.ViewModels
         }
 
         private readonly SlotsManager slotsManager;
+        private readonly NavigationService reserveNavigationService;
         private readonly ObservableCollection<MarketSlotViewModel> slots;
 
         public ObservableCollection<MarketSlotViewModel> Slots => slots;
@@ -35,8 +36,13 @@ namespace Market.ViewModels
 
             foreach (MarketSlot slot in slotsManager.Slots)
             {
-                Slots.Add(new MarketSlotViewModel(slot, null, null));
+                Slots.Add(new MarketSlotViewModel(slot, null, null, BuySlot));
             }
+        }
+
+        private void BuySlot(MarketSlot slot)
+        {
+
         }
 
 

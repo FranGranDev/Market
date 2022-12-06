@@ -1,5 +1,6 @@
 ﻿using Market.Stores;
 using Market.ViewModels;
+using Market.Models.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace Market.Services
     public class NavigationService
     {
         private readonly NavigationStore navigationStore;
-        private readonly Func<ViewModelBase> createViewModel;
+        private readonly Func<object, ViewModelBase> createViewModel;
 
-        public NavigationService(NavigationStore navigationStore, Func<ViewModelBase> createViewModel)
+        public NavigationService(NavigationStore navigationStore, Func<object, ViewModelBase> createViewModel)
         {
             this.navigationStore = navigationStore;
             this.createViewModel = createViewModel;
@@ -22,7 +23,11 @@ namespace Market.Services
 
         public void Navigate()
         {
-            navigationStore.CurrantViewModel = createViewModel();
+            navigationStore.CurrantViewModel = createViewModel(null);
+        }
+        public void Navigate(MarketSlot slot)
+        {
+            navigationStore.CurrantViewModel = createViewModel(slot);
         }
     }
 }
