@@ -43,9 +43,9 @@ namespace Market.Models.Items
         }
 
 
-        public void BuySlot(User user, MarketSlot slot)
+        public void ReserveSlot(User user, MarketSlot slot)
         {
-            
+                
         }
 
     }

@@ -39,7 +39,7 @@ namespace Market.Models.Data
 
         public DataBase()
         {
-            sqlConnection = new MySqlConnection("server=localhost;port=3306;username=root;password=qwerty123;database=Market");
+            sqlConnection = new MySqlConnection("server=localhost;port=3306;username=root;password=Lolipup228;database=Market");
 
             OpenConnection();
             CheckForAdmin();

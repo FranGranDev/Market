@@ -42,7 +42,7 @@ namespace Market.ViewModels
 
         private void BuySlot(MarketSlot slot)
         {
-
+            reserveNavigationService.Navigate(slot);
         }
 
 

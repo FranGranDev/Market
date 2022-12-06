@@ -58,7 +58,7 @@
                         Margin="0,20,20,0"
                         Background="White"/>
                         <TextBox Grid.Column="1"
-                        Text="{Binding SurName, UpdateSourceTrigger=PropertyChanged}" 
+                        Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}" 
                         materialDesign:HintAssist.Hint="Sur Name"
                         FontSize="20" 
                         HorizontalAlignment="Stretch"
@@ -73,7 +73,7 @@
 
                         <TextBox
                         Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" 
-                        materialDesign:HintAssist.Hint="Phone number"
+                        materialDesign:HintAssist.Hint="+375-00-000-00-00"
                        
                         FontSize="20"
                         HorizontalAlignment="Stretch"

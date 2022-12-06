@@ -11,89 +11,50 @@ namespace Market.ViewModels
     {
         public ReservationViewModel(SlotsManager slotsManager, MarketSlot slot, NavigationService backNavigationService)
         {
-            //ReserveCommand = new ReserveCommand();
+
+            ReserveCommand = new ReserveCommand(this, slotsManager, slot, backNavigationService);
             BackCommand = new NavigateCommand(backNavigationService);
         }
 
 
-        private string model;
-        private string brand;
-        private DateTime release = DateTime.Now;
-        private string baseCost;
-        private string sale;
-        private string count;
+        private string name;
+        private string surname;
+        private string phone;
 
-
-        public string Model
+        public string Name
         {
             get
             {
-                return model;
+                return name;
             }
             set
             {
-                model = value;
-                OnPropertyChanged(nameof(Model));
+                name = value;
+                OnPropertyChanged(nameof(Name));
             }
         }
-        public DateTime Release
+        public string Surname
         {
             get
             {
-                return release;
+                return surname;
             }
             set
             {
-                release = value;
-                OnPropertyChanged(nameof(Release));
+                surname = value;
+                OnPropertyChanged(nameof(Surname));
             }
         }
-        public string Brand
+        public string Phone
         {
             get
             {
-                return brand;
+                return phone;
             }
             set
             {
-                brand = value;
-                OnPropertyChanged(nameof(Brand));
-            }
-        }
-        public string BaseCost
-        {
-            get
-            {
-                return baseCost;
-            }
-            set
-            {
-                baseCost = value;
-                OnPropertyChanged(nameof(BaseCost));
-            }
-        }
-        public string Sale
-        {
-            get
-            {
-                return sale;
-            }
-            set
-            {
-                sale = value;
-                OnPropertyChanged(nameof(Sale));
-            }
-        }
-        public string Count
-        {
-            get
-            {
-                return count;
-            }
-            set
-            {
-                count = value;
-                OnPropertyChanged(nameof(Count));
+                phone = value;
+                OnPropertyChanged(nameof(Phone));
             }
         }
 

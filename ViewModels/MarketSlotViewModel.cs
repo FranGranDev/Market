@@ -13,7 +13,7 @@ namespace Market.ViewModels
             this.onChanged = onChanged;
 
             DeleteCommand = new ActionCommand(() => onDeleted?.Invoke(slot));
-            BuyCommand = new ActionCommand(() => onBuy?.Invoke(slot));
+            ReserveCommand = new ActionCommand(() => onBuy?.Invoke(slot));
         }
 
         private readonly MarketSlot slot;
@@ -80,6 +80,6 @@ namespace Market.ViewModels
         }
 
         public ICommand DeleteCommand { get; }
-        public ICommand BuyCommand { get; }
+        public ICommand ReserveCommand { get; }
     }
 }
