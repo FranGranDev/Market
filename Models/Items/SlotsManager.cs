@@ -17,13 +17,15 @@ namespace Market.Models.Items
 
         public List<MarketSlot> Slots
         {
-            get
-            {
-                return dataBase.GetAllSlots();
-            }
+            get => dataBase.GetAllSlots();
+        }
+        public List<ReservationData> Reservations
+        {
+            get => dataBase.GetAllReservations();
         }
 
-        public event Action OnItemsListChanged;
+        public event Action OnMarketItemsListChanged;
+        public event Action OnReservationItemsListChanged;
 
         public void CreateNewSlot(MarketItem item, ItemCost cost, int count)
         {
@@ -39,14 +41,33 @@ namespace Market.Models.Items
         {
             dataBase.RemoveSlot(slot.id);
 
-            OnItemsListChanged?.Invoke();
+            Reservations.Where(x => x.SlotId == slot.id).ToList().ForEach(x => dataBase.DeleteReservation(x.Id));
+
+            OnMarketItemsListChanged?.Invoke();
         }
 
 
-        public void ReserveSlot(User user, MarketSlot slot)
+        public void MakeSlotReservation(ReservationData data)
         {
-                
+            dataBase.MakeReservation(data);
         }
+        public void OverrideReservation(ReservationData data)
+        {
+            dataBase.OverrideReservation(data);
+            if(data.State == ReservationData.States.Done)
+            {
+                MarketSlot slot = Slots.First(x => x.id == data.SlotId);
+                slot.Count--;
+                OverrideSlot(slot);
+            }
 
+            OnReservationItemsListChanged?.Invoke();
+        }
+        public void DeleteReservation(ReservationData data)
+        {
+            dataBase.DeleteReservation(data.Id);
+
+            OnReservationItemsListChanged?.Invoke();
+        }
     }
 }

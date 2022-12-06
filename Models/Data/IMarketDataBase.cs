@@ -12,5 +12,12 @@ namespace Market.Models.Data
         MarketSlot GetSlot(int id);
         void ChangeSlot(int id, MarketSlot newItem);
         List<MarketSlot> GetAllSlots();
+
+
+        void MakeReservation(ReservationData data);
+        void OverrideReservation(ReservationData data);
+        void DeleteReservation(int id);
+        List<ReservationData> GetAllReservations();
+       
     }
 }

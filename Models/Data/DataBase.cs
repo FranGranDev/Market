@@ -10,24 +10,23 @@ using Market.Models.Items;
 namespace Market.Models.Data
 {
     /*
-     * CREATE TABLE `market`.`items` (
+     CREATE TABLE `market`.`reservation` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `model` VARCHAR(45) NOT NULL,
-  `brand` VARCHAR(45) NOT NULL,
-  `releaseDate` DATE NOT NULL,
-  `baseCost` INT NOT NULL,
-  `sale` DOUBLE NOT NULL,
-  `count` INT NOT NULL,
-  PRIMARY KEY (`id`));
-
+  `login` VARCHAR(45) NOT NULL,
+  `name` VARCHAR(45) NOT NULL,
+  `phone` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE); 
      */
     public class DataBase : IUserDataBase, IMarketDataBase
     {
+        //Users
         private const string USERS = "users";
         private const string LOGIN = "login";
         private const string PASSWORD = "password";
         private const string IS_ADMIN = "isAdmin";
 
+        //Itens
         private const string ITEMS = "items";
         private const string MODEL = "model";
         private const string BRAND = "brand";
@@ -36,10 +35,17 @@ namespace Market.Models.Data
         private const string SALE = "sale";
         private const string COUNT = "count";
 
+        //Reservations
+        private const string RESERVATIONS = "reservations";
+        private const string SLOT_ID = "slotId";
+        private const string NAME = "name";
+        private const string PHONE = "phone";
+        private const string DATE_TIME = "orderDate";
+        private const string STATE = "state";
 
         public DataBase()
         {
-            sqlConnection = new MySqlConnection("server=localhost;port=3306;username=root;password=Lolipup228;database=Market");
+            sqlConnection = new MySqlConnection("server=localhost;port=3306;username=root;password=qwerty123;database=Market");
 
             OpenConnection();
             CheckForAdmin();
@@ -233,6 +239,68 @@ namespace Market.Models.Data
             }
             return slots;
         }
+        #endregion
+
+        #region Reservation
+
+        public void MakeReservation(ReservationData data)
+        {
+            using (MySqlCommand command = new MySqlCommand($"insert into {RESERVATIONS}({SLOT_ID}, {LOGIN}, {NAME}, {PHONE}, {DATE_TIME}, {STATE}) values (@slotId, @login, @name, @phone, @date, @state)", SqlConnection))
+            {
+                command.Parameters.Add("@slotId", MySqlDbType.Int32).Value = data.SlotId;
+                command.Parameters.Add("@login", MySqlDbType.VarChar).Value = data.Login;
+                command.Parameters.Add("@name", MySqlDbType.VarChar).Value = data.FullName;
+                command.Parameters.Add("@phone", MySqlDbType.VarChar).Value = data.Phone;
+                command.Parameters.Add("@date", MySqlDbType.Date).Value = data.DateTime.ToString("yyyy-MM-dd");
+                command.Parameters.Add("@state", MySqlDbType.Int32).Value = (int)data.State;
+
+                command.ExecuteNonQuery();
+            }
+        }
+        public void OverrideReservation(ReservationData data)
+        {
+            MySqlCommand command = new MySqlCommand($"update {RESERVATIONS} set {STATE} = @state where id = {data.Id}", SqlConnection);
+            using (command)
+            {
+                command.Parameters.Add("@state", MySqlDbType.VarChar).Value = (int)data.State;
+
+                command.ExecuteNonQuery();
+            }
+        }
+        public void DeleteReservation(int id)
+        {
+            MySqlCommand command = new MySqlCommand($"delete from {RESERVATIONS} where id = {id}", SqlConnection);
+            using (command)
+            {
+                command.ExecuteNonQuery();
+            }
+        }
+        public List<ReservationData> GetAllReservations()
+        {
+            MySqlCommand command = new MySqlCommand($"select * from {RESERVATIONS}", SqlConnection);
+            List<ReservationData> reservations = new List<ReservationData>();
+
+            using (MySqlDataReader reader = command.ExecuteReader())
+            {
+
+                while (reader.Read())
+                {
+                    int id = reader.GetInt32(0);
+                    int slotId = reader.GetInt32(1);
+                    string login = reader.GetString(2);
+                    string[] fullname = reader.GetString(3).Split(' ');
+                    string name = fullname[0];
+                    string surname = fullname[1];
+                    long phone = Convert.ToInt64(reader.GetString(4));
+                    DateTime date = reader.GetDateTime(5);
+                    ReservationData.States state = (ReservationData.States)reader.GetInt32(6);
+
+                    reservations.Add(new ReservationData(id, slotId, login, name, surname, phone, date, state));
+                }
+            }
+            return reservations;
+        }
+
         #endregion
     }
 }

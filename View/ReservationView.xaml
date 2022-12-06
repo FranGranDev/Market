@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#ffdadada">
-        <Border MinWidth="500" MaxWidth="900" Margin="25" Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="20">
+        <Border MinWidth="500" MaxWidth="900" MinHeight="400" Margin="25" Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="20">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="10" ShadowDepth="0"/>
             </Border.Effect>
@@ -17,9 +17,9 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-
 
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
@@ -50,6 +50,29 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
+                        <TextBlock Grid.Column="0"
+                            Text="{Binding Brand, UpdateSourceTrigger=PropertyChanged}" 
+                            FontSize="20"
+                            HorizontalAlignment="Stretch"
+                            Margin="0,20,20,0"
+                            Background="White"/>
+                        <TextBlock Grid.Column="1"
+                            Text="{Binding Model, UpdateSourceTrigger=PropertyChanged}" 
+                            FontSize="20" 
+                            HorizontalAlignment="Stretch"
+                            Margin="0,20,20,0"
+                            Background="White"/>
+                    </Grid>
+
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid Margin="20,20,20,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
                         <TextBox Grid.Column="0"
                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
                         materialDesign:HintAssist.Hint="Name"
@@ -59,7 +82,7 @@
                         Background="White"/>
                         <TextBox Grid.Column="1"
                         Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}" 
-                        materialDesign:HintAssist.Hint="Sur Name"
+                        materialDesign:HintAssist.Hint="Surname"
                         FontSize="20" 
                         HorizontalAlignment="Stretch"
                         Margin="0,20,20,0"
@@ -68,12 +91,13 @@
 
                 </Grid>
 
-                <Grid Grid.Row="2">
+                <Grid Grid.Row="3">
                     <Grid Margin="20,20,20,20">
 
                         <TextBox
-                        Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}" 
-                        materialDesign:HintAssist.Hint="+375-00-000-00-00"
+                        Text="{Binding Phone, UpdateSourceTrigger=PropertyChanged}"
+                        PreviewTextInput="NumberValidationTextBox"
+                        materialDesign:HintAssist.Hint="375 00 000 00 00"
                        
                         FontSize="20"
                         HorizontalAlignment="Stretch"
@@ -83,7 +107,7 @@
 
                 </Grid>
 
-                <Grid Grid.Row="3" Margin="0, 25, 25, 0">
+                <Grid Grid.Row="4" Margin="0, 25, 25, 0">
                     <Button
                         Grid.Column="2"
                         MinWidth="100"

@@ -41,7 +41,7 @@ namespace Market.ViewModels.Factory
 
         public AdminPanelViewModel CreateAdminPanelViewModel(object param)
         {
-            return new AdminPanelViewModel(usersManager, new NavigationService(navigationStore, CreateUserListViewModel), new NavigationService(navigationStore, CreateAdminMarketViewModel), new NavigationService(navigationStore, CreateLoginViewModel));
+            return new AdminPanelViewModel(usersManager, new NavigationService(navigationStore, CreateUserListViewModel), new NavigationService(navigationStore, CreateAdminMarketViewModel), new NavigationService(navigationStore, CreateReservationListViewModel), new NavigationService(navigationStore, CreateLoginViewModel));
         }
 
 
@@ -58,14 +58,17 @@ namespace Market.ViewModels.Factory
         {
             return new UserMarketSlotsViewModel(slotsManager, new NavigationService(navigationStore, CreateReservationViewModel), new NavigationService(navigationStore, CreateUserPanelViewModel));
         }
-        public ReservationViewModel CreateReservationViewModel(object param)
+        public MakeReservationViewModel CreateReservationViewModel(object param)
         {
-            return new ReservationViewModel(slotsManager, (MarketSlot)param, new NavigationService(navigationStore, CreateUserMarketViewModel));
+            return new MakeReservationViewModel(usersManager, slotsManager, (MarketSlot)param, new NavigationService(navigationStore, CreateUserMarketViewModel));
         }
-
         public MarketSlotCreationViewModel CreateMarketSlotCreationViewModel(object param)
         {
             return new MarketSlotCreationViewModel(slotsManager, new NavigationService(navigationStore, CreateAdminMarketViewModel));
+        }
+        public ReservationListViewModel CreateReservationListViewModel(object param)
+        {
+            return new ReservationListViewModel(slotsManager, new NavigationService(navigationStore, CreateAdminPanelViewModel));
         }
     }
 }

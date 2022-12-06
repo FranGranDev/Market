@@ -20,7 +20,7 @@ namespace Market.ViewModels
             slots = new ObservableCollection<MarketSlotViewModel>();
 
             UpdateSlots();
-            slotsManager.OnItemsListChanged += UpdateSlots;
+            slotsManager.OnMarketItemsListChanged += UpdateSlots;
         }
 
         private readonly SlotsManager slotsManager;

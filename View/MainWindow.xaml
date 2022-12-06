@@ -37,8 +37,11 @@
             <DataTemplate DataType="{x:Type vms:UserMarketSlotsViewModel}">
                 <local:UserMarketSlotsView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type vms:ReservationViewModel}">
+            <DataTemplate DataType="{x:Type vms:MakeReservationViewModel}">
                 <local:ReservationView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:ReservationListViewModel}">
+                <local:ReservationListView/>
             </DataTemplate>
         </Grid.Resources>
 

@@ -136,6 +136,7 @@
     <Compile Include="Models\Exceptions\UserAlreadyExistsException.cs" />
     <Compile Include="Models\Exceptions\UserNotSingInException.cs" />
     <Compile Include="Models\Items\ItemCost.cs" />
+    <Compile Include="Models\Items\ReservationData.cs" />
     <Compile Include="Models\Items\SlotsManager.cs" />
     <Compile Include="Models\Items\MarketItem.cs" />
     <Compile Include="Models\Items\MarketSlot.cs" />
@@ -151,6 +152,8 @@
     <Compile Include="ViewModels\MarketSlotCreationViewModel.cs" />
     <Compile Include="ViewModels\MarketSlotViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
+    <Compile Include="ViewModels\MakeReservationViewModel.cs" />
+    <Compile Include="ViewModels\ReservationListViewModel.cs" />
     <Compile Include="ViewModels\ReservationViewModel.cs" />
     <Compile Include="ViewModels\StartViewModel.cs" />
     <Compile Include="ViewModels\UserListViewModel.cs" />
@@ -172,6 +175,9 @@
     </Compile>
     <Compile Include="View\RegistrationView.xaml.cs">
       <DependentUpon>RegistrationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReservationListView.xaml.cs">
+      <DependentUpon>ReservationListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ReservationView.xaml.cs">
       <DependentUpon>ReservationView.xaml</DependentUpon>
@@ -222,6 +228,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RegistrationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReservationListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

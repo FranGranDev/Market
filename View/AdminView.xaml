@@ -15,8 +15,9 @@
             <StackPanel>
                 <TextBlock Text="Admin Panel" FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,0,20"/>
                 <StackPanel>
-                    <Button Command="{Binding UserListCommand}" HorizontalAlignment="Stretch" Content="User List" Margin="50, 20, 50, 0"/>
                     <Button Command="{Binding MarketCommand}" HorizontalAlignment="Stretch" Content="Market items" Margin="50, 20, 50, 0"/>
+                    <Button Command="{Binding ReservationCommand}" HorizontalAlignment="Stretch" Content="Reservations" Margin="50, 20, 50, 0"/>
+                    <Button Command="{Binding UserListCommand}" HorizontalAlignment="Stretch" Content="User List" Margin="50, 20, 50, 0"/>
                     <Button Command="{Binding BackCommand}" HorizontalAlignment="Stretch" Content="Log out" Margin="50, 40, 50, 20"/>
 
                 </StackPanel>

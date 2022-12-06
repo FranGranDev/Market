@@ -2,6 +2,7 @@
 using Market.Commands;
 using System;
 using System.Windows.Input;
+using System.Windows;
 
 namespace Market.ViewModels
 {
@@ -11,13 +12,15 @@ namespace Market.ViewModels
         {
             this.slot = slot;
             this.onChanged = onChanged;
+            this.onDeleted = onDeleted;
 
-            DeleteCommand = new ActionCommand(() => onDeleted?.Invoke(slot));
+            DeleteCommand = new ActionCommand(Delete);
             ReserveCommand = new ActionCommand(() => onBuy?.Invoke(slot));
         }
 
         private readonly MarketSlot slot;
         private readonly Action<MarketSlot> onChanged;
+        private readonly Action<MarketSlot> onDeleted;
 
         public string Model
         {
@@ -76,6 +79,17 @@ namespace Market.ViewModels
             {
                 slot.Count = value;
                 onChanged?.Invoke(slot);
+            }
+        }
+
+        private void Delete()
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure, all orders with this product will be also deleted?", "Item delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    onDeleted?.Invoke(slot);
+                    break;
             }
         }
 
