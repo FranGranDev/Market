@@ -1,3 +1,5 @@
 # Market
+- C#
+- WPF
+- MySQL
 
-WPF Application with MySQL database
